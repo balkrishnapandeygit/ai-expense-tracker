@@ -1,7 +1,7 @@
 const Expense = require("../models/Expense");
 const mongoose = require("mongoose");
 
-// ================= TOTAL SPENDING =================
+
 exports.getTotalExpense = async (req, res) => {
   try {
     const userId = new mongoose.Types.ObjectId(req.user.id);
@@ -23,7 +23,7 @@ exports.getTotalExpense = async (req, res) => {
   }
 };
 
-// ================= CATEGORY WISE =================
+
 exports.getCategoryWiseExpense = async (req, res) => {
   try {
     const userId = new mongoose.Types.ObjectId(req.user.id);
@@ -46,7 +46,7 @@ exports.getCategoryWiseExpense = async (req, res) => {
   }
 };
 
-// ================= MONTHLY =================
+
 exports.getMonthlyExpense = async (req, res) => {
   try {
     const userId = new mongoose.Types.ObjectId(req.user.id);
@@ -62,7 +62,7 @@ exports.getMonthlyExpense = async (req, res) => {
       { $sort: { _id: 1 } },
     ]);
 
-    // 🔥 Convert month number → name (for frontend)
+  )
     const monthNames = [
       "Jan","Feb","Mar","Apr","May","Jun",
       "Jul","Aug","Sep","Oct","Nov","Dec",
