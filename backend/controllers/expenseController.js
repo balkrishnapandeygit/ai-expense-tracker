@@ -1,6 +1,6 @@
 const Expense = require("../models/Expense");
 
-// GET
+
 const getExpenses = async (req, res) => {
   try {
     console.log("Getting expenses for user:", req.user.id);
@@ -13,7 +13,7 @@ const getExpenses = async (req, res) => {
   }
 };
 
-// ADD
+
 const addExpense = async (req, res) => {
   try {
     console.log("Adding expense for user:", req.user.id, "body:", req.body);
@@ -35,7 +35,7 @@ const addExpense = async (req, res) => {
   }
 };
 
-// UPDATE
+
 const updateExpense = async (req, res) => {
   try {
     console.log("Updating expense:", req.params.id, "body:", req.body);
@@ -68,7 +68,7 @@ const updateExpense = async (req, res) => {
   }
 };
 
-// DELETE
+
 const deleteExpense = async (req, res) => {
   try {
     console.log("Deleting expense:", req.params.id);
