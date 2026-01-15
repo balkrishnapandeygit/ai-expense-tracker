@@ -18,7 +18,6 @@ console.log("Server file started");
 
 const app = express();
 
-// Middlewares
 app.use(cors());
 app.use(express.json());
 app.use("/api/auth", authRoutes);
@@ -33,7 +32,7 @@ app.use("/api/ai", protect, aiRoutes);
 connectDB();
 
 
-// Test Route
+
 app.get("/", (req, res) => {
   res.send("AI Expense Tracker Backend Running 🚀");
 });
