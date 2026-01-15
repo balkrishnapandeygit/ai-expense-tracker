@@ -4,7 +4,6 @@ const API = axios.create({
   baseURL: "http://localhost:5000/api",
 });
 
-// 🔐 Attach token automatically
 API.interceptors.request.use(
   (config) => {
     const token = localStorage.getItem("token");
@@ -16,7 +15,7 @@ API.interceptors.request.use(
   (error) => Promise.reject(error)
 );
 
-// 🚫 Auto logout if token invalid
+
 API.interceptors.response.use(
   (res) => res,
   (err) => {
