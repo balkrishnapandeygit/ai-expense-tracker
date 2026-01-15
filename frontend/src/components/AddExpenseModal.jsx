@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import API from "../API/Axios";
 
-// ==================== CONSTANTS ====================
+
 const EXPENSE_CATEGORIES = [
   { value: "Food", label: "🍔 Food", color: "#22c55e" },
   { value: "Travel", label: "✈️ Travel", color: "#38bdf8" },
@@ -26,13 +26,13 @@ const VALIDATION_RULES = {
   },
 };
 
-// ==================== MAIN COMPONENT ====================
+
 const AddExpenseModal = ({ onClose, onAdded }) => {
   const [formData, setFormData] = useState({
     title: "",
     amount: "",
     category: "Food",
-    date: new Date().toISOString().split("T")[0], // Default to today
+    date: new Date().toISOString().split("T")[0], 
   });
 
   const [formState, setFormState] = useState({
@@ -44,12 +44,12 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
   const modalRef = useRef(null);
   const titleInputRef = useRef(null);
 
-  // ==================== EFFECTS ====================
+ 
   useEffect(() => {
-    // Focus title input on mount
+   
     titleInputRef.current?.focus();
 
-    // Prevent body scroll when modal is open
+    
     document.body.style.overflow = "hidden";
 
     return () => {
@@ -57,7 +57,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
     };
   }, []);
 
-  // ==================== VALIDATION ====================
+
   const validateField = useCallback((name, value) => {
     switch (name) {
       case "title":
@@ -89,7 +89,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
         if (!value) return "Date is required";
         const selectedDate = new Date(value);
         const today = new Date();
-        today.setHours(23, 59, 59, 999); // End of today
+        today.setHours(23, 59, 59, 999); 
         if (selectedDate > today) {
           return "Date cannot be in the future";
         }
@@ -109,11 +109,10 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
     return errors;
   }, [formData, validateField]);
 
-  // ==================== HANDLERS ====================
   const handleInputChange = useCallback((name, value) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Clear error when user starts typing
+
     if (formState.errors[name]) {
       setFormState((prev) => ({
         ...prev,
@@ -140,14 +139,14 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Mark all fields as touched
+  
     const allTouched = Object.keys(formData).reduce(
       (acc, key) => ({ ...acc, [key]: true }),
       {}
     );
     setFormState((prev) => ({ ...prev, touched: allTouched }));
 
-    // Validate all fields
+
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormState((prev) => ({ ...prev, errors }));
@@ -164,7 +163,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
         date: formData.date,
       });
 
-      // Success - reset form and close
+    
       onAdded();
       onClose();
     } catch (err) {
@@ -195,7 +194,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
     }
   }, [onClose]);
 
-  // ==================== COMPUTED VALUES ====================
+
   const isFormValid = Object.keys(validateForm()).length === 0;
   const selectedCategory = EXPENSE_CATEGORIES.find(
     (cat) => cat.value === formData.category
@@ -224,7 +223,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
         </div>
 
         <form onSubmit={handleSubmit} noValidate>
-          {/* Title Field */}
+          
           <div className="form-group">
             <label htmlFor="expense-title">
               Title <span className="required">*</span>
@@ -257,7 +256,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
             </span>
           </div>
 
-          {/* Amount Field */}
+   
           <div className="form-group">
             <label htmlFor="expense-amount">
               Amount (₹) <span className="required">*</span>
@@ -295,7 +294,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
             )}
           </div>
 
-          {/* Category Field */}
+       
           <div className="form-group">
             <label htmlFor="expense-category">
               Category <span className="required">*</span>
@@ -317,7 +316,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
             </div>
           </div>
 
-          {/* Date Field */}
+       
           <div className="form-group">
             <label htmlFor="expense-date">
               Date <span className="required">*</span>
@@ -345,7 +344,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
             )}
           </div>
 
-          {/* Submit Error */}
+       
           {formState.errors.submit && (
             <div className="submit-error" role="alert">
               <span>⚠️</span>
@@ -353,7 +352,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
             </div>
           )}
 
-          {/* Action Buttons */}
+        
           <div className="modal-actions">
             <button
               type="submit"
@@ -385,7 +384,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
       </div>
 
       <style jsx>{`
-        /* ==================== VARIABLES ==================== */
+      
         :root {
           --color-bg-overlay: rgba(0, 0, 0, 0.75);
           --color-bg-modal: #1e293b;
@@ -418,7 +417,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
           --transition-base: 0.3s ease;
         }
 
-        /* ==================== MODAL OVERLAY ==================== */
+      
         .modal-overlay {
           position: fixed;
           inset: 0;
@@ -441,7 +440,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
           }
         }
 
-        /* ==================== MODAL CONTAINER ==================== */
+      
         .modal {
           background: var(--color-bg-modal);
           border-radius: var(--radius-lg);
@@ -465,7 +464,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
           }
         }
 
-        /* ==================== MODAL HEADER ==================== */
+       
         .modal-header {
           display: flex;
           align-items: center;
@@ -509,7 +508,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
           transform: rotate(90deg);
         }
 
-        /* ==================== FORM ==================== */
+      
         form {
           padding: var(--spacing-lg);
         }
@@ -532,7 +531,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
           color: var(--color-error);
         }
 
-        /* ==================== INPUT STYLES ==================== */
+       
         input,
         select {
           width: 100%;
@@ -626,7 +625,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
           filter: invert(0.7);
         }
 
-        /* ==================== ERROR MESSAGES ==================== */
+        
         .error-message {
           display: block;
           color: var(--color-error);
@@ -680,7 +679,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
           }
         }
 
-        /* ==================== BUTTONS ==================== */
+       
         .modal-actions {
           display: flex;
           gap: var(--spacing-md);
@@ -761,7 +760,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
           }
         }
 
-        /* ==================== RESPONSIVE ==================== */
+     
         @media (max-width: 640px) {
           .modal-overlay {
             padding: 0;
@@ -809,7 +808,7 @@ const AddExpenseModal = ({ onClose, onAdded }) => {
           }
         }
 
-        /* ==================== ACCESSIBILITY ==================== */
+       
         @media (prefers-reduced-motion: reduce) {
           *,
           *::before,
