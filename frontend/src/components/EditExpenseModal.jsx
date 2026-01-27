@@ -1,7 +1,7 @@
 import { useState, useCallback, useRef, useEffect } from "react";
 import API from "../API/Axios";
 
-// ==================== CONSTANTS ====================
+
 const EXPENSE_CATEGORIES = [
   { value: "Food", label: "🍔 Food", color: "#22c55e" },
   { value: "Travel", label: "✈️ Travel", color: "#38bdf8" },
@@ -26,7 +26,7 @@ const VALIDATION_RULES = {
   },
 };
 
-// ==================== MAIN COMPONENT ====================
+
 const EditExpenseModal = ({ expense, onClose, onUpdated }) => {
   const [formData, setFormData] = useState({
     title: expense.title || "",
@@ -51,13 +51,13 @@ const EditExpenseModal = ({ expense, onClose, onUpdated }) => {
   const modalRef = useRef(null);
   const titleInputRef = useRef(null);
 
-  // ==================== EFFECTS ====================
+ 
   useEffect(() => {
-    // Focus title input on mount
+   
     titleInputRef.current?.focus();
-    titleInputRef.current?.select(); // Select text for easy editing
+    titleInputRef.current?.select(); 
 
-    // Prevent body scroll when modal is open
+    
     document.body.style.overflow = "hidden";
 
     return () => {
@@ -65,7 +65,7 @@ const EditExpenseModal = ({ expense, onClose, onUpdated }) => {
     };
   }, []);
 
-  // ==================== COMPUTED VALUES ====================
+  
   const hasChanges = useCallback(() => {
     return (
       formData.title !== originalData.title ||
@@ -75,7 +75,7 @@ const EditExpenseModal = ({ expense, onClose, onUpdated }) => {
     );
   }, [formData, originalData]);
 
-  // ==================== VALIDATION ====================
+  
   const validateField = useCallback((name, value) => {
     switch (name) {
       case "title":
@@ -107,7 +107,7 @@ const EditExpenseModal = ({ expense, onClose, onUpdated }) => {
         if (!value) return "Date is required";
         const selectedDate = new Date(value);
         const today = new Date();
-        today.setHours(23, 59, 59, 999); // End of today
+        today.setHours(23, 59, 59, 999); 
         if (selectedDate > today) {
           return "Date cannot be in the future";
         }
@@ -127,11 +127,10 @@ const EditExpenseModal = ({ expense, onClose, onUpdated }) => {
     return errors;
   }, [formData, validateField]);
 
-  // ==================== HANDLERS ====================
   const handleInputChange = useCallback((name, value) => {
     setFormData((prev) => ({ ...prev, [name]: value }));
 
-    // Clear error when user starts typing
+    
     if (formState.errors[name]) {
       setFormState((prev) => ({
         ...prev,
@@ -167,20 +166,20 @@ const EditExpenseModal = ({ expense, onClose, onUpdated }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    // Check if there are any changes
+
     if (!hasChanges()) {
       onClose();
       return;
     }
 
-    // Mark all fields as touched
+
     const allTouched = Object.keys(formData).reduce(
       (acc, key) => ({ ...acc, [key]: true }),
       {}
     );
     setFormState((prev) => ({ ...prev, touched: allTouched }));
 
-    // Validate all fields
+    
     const errors = validateForm();
     if (Object.keys(errors).length > 0) {
       setFormState((prev) => ({ ...prev, errors }));
@@ -197,7 +196,7 @@ const EditExpenseModal = ({ expense, onClose, onUpdated }) => {
         date: formData.date,
       });
 
-      // Success - close modal and refresh
+     
       onUpdated();
       onClose();
     } catch (err) {
@@ -242,7 +241,7 @@ const EditExpenseModal = ({ expense, onClose, onUpdated }) => {
     }
   }, [onClose, hasChanges]);
 
-  // ==================== COMPUTED VALUES ====================
+  
   const isFormValid = Object.keys(validateForm()).length === 0;
   const selectedCategory = EXPENSE_CATEGORIES.find(
     (cat) => cat.value === formData.category
