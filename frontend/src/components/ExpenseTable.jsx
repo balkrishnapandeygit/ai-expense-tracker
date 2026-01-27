@@ -2,7 +2,7 @@ import { useEffect, useState, useCallback, useMemo } from "react";
 import API from "../API/Axios";
 import EditExpenseModal from "./EditExpenseModal";
 
-// ==================== CONSTANTS ====================
+
 const CATEGORY_ICONS = {
   Food: "🍔",
   Travel: "✈️",
@@ -38,7 +38,7 @@ const SORT_OPTIONS = {
 
 const ITEMS_PER_PAGE = 10;
 
-// ==================== MAIN COMPONENT ====================
+
 const ExpenseTable = ({ refreshKey, onChange }) => {
   const [expenses, setExpenses] = useState([]);
   const [tableState, setTableState] = useState({
@@ -52,7 +52,7 @@ const ExpenseTable = ({ refreshKey, onChange }) => {
   const [editExpense, setEditExpense] = useState(null);
   const [deletingId, setDeletingId] = useState(null);
 
-  // ==================== DATA FETCHING ====================
+
   const fetchExpenses = useCallback(async () => {
     try {
       setTableState((prev) => ({ ...prev, loading: true, error: null }));
