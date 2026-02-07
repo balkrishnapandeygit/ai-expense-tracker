@@ -5,8 +5,8 @@ This project is a complete **AI-powered expense tracker** built using **Node.js,
 It includes **backend + frontend** with a clean, scalable folder structure.
 
 
-
-## 📂 Project Folder Structure
+```bash
+ 📂 Project Folder Structure
 
 AI-EXPENSE-TRACKER/
 │
@@ -35,7 +35,7 @@ AI-EXPENSE-TRACKER/
 │ └── package.json
 │
 └── README.md
-
+```
 
 
 ## 🚀 Features
@@ -94,10 +94,10 @@ AI-EXPENSE-TRACKER/
 - Text extraction  
 
 ---
+```bash
+ ⚙️ Installation & Setup
 
-## ⚙️ Installation & Setup
-
-### 🔧 Backend Setup
+ 🔧 Backend Setup
 
 cd backend
 npm install
@@ -125,17 +125,14 @@ DELETE	/api/expenses/:id	Delete expense
 🧠 AI Flow (Optional)
 User input → NLP preprocessing → Extract info → Categorization
 → Save to MongoDB → Display in Dashboard
+```
 📸 Screenshots
-🏠 Landing Page
 <img src="https://github.com/user-attachments/assets/d042f478-a831-401b-8c70-aec691d94b71" width="900"/>
-📊 Dashboard
 <img src="https://github.com/user-attachments/assets/957a48ec-ba96-4add-a095-e88af31e2a9a" width="900"/>
-➕ Add Expense
 <img src="https://github.com/user-attachments/assets/4b7d38a9-296e-4373-9397-41505eb04c15" width="900"/>
-📈 Reports
 <img src="https://github.com/user-attachments/assets/4eee5bd3-84eb-4b92-baa7-a302958b4c8b" width="900"/>
-🧠 AI Input Assistant
 <img src="https://github.com/user-attachments/assets/21f84460-feb9-4d12-be17-bfa2ddbd66d1" width="900"/>
+
 🛣️ Future Improvements
 OCR receipt scanning
 
