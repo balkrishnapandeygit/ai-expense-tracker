@@ -4,7 +4,7 @@ A Full-Stack Smart Expense Tracking App (MERN + AI)
 This project is a complete **AI-powered expense tracker** built using **Node.js, Express, MongoDB, React, Context API**, and an optional AI categorization module.  
 It includes **backend + frontend** with a clean, scalable folder structure.
 
----
+
 
 ## 📂 Project Folder Structure
 
@@ -37,7 +37,6 @@ AI-EXPENSE-TRACKER/
 └── README.md
 
 
----
 
 ## 🚀 Features
 
@@ -99,7 +98,7 @@ AI-EXPENSE-TRACKER/
 ## ⚙️ Installation & Setup
 
 ### 🔧 Backend Setup
-```bash
+
 cd backend
 npm install
 npm start   # or nodemon server.js
